@@ -1,0 +1,11 @@
+# OS / editor junk
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.log
+
+# Tooling / local preview config
+.claude/
+
+# Image backup (original with watermark removed)
+assets/hero-city-original.jpg
