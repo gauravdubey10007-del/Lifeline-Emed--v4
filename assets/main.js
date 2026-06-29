@@ -30,11 +30,13 @@
         '<span class="brand__name"><b>Lifeline Emed</b></span></a>' +
       '<ul class="nav__links">' + NAV_LINKS.map(function (l) { return "<li>" + linkHtml(l) + "</li>"; }).join("") + "</ul>" +
       '<div class="nav__actions">' +
+        '<a class="btn btn--gold" href="contact.html">Submit Manuscript</a>' +
         '<button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>' +
       "</div>" +
     "</div></nav>" +
     '<div class="nav__drawer" id="drawer"><ul>' +
       NAV_LINKS.map(function (l) { return "<li>" + linkHtml(l) + "</li>"; }).join("") +
+      '<a class="btn btn--gold" href="contact.html">Submit Manuscript</a>' +
     "</ul></div>";
 
   /* ---------- FOOTER ---------- */
@@ -63,9 +65,7 @@
           '<li><a href="journals.html#guidelines">Author Guidelines</a></li>' +
           '<li><a href="contact.html">Submit Manuscript</a></li>' +
         "</ul></div>" +
-        '<div><h4>Account &amp; Legal</h4><ul>' +
-          '<li><a href="signup.html">Sign Up</a></li>' +
-          '<li><a href="login.html">Login</a></li>' +
+        '<div><h4>Legal</h4><ul>' +
           '<li><a href="privacy-policy.html">Privacy Policy</a></li>' +
           '<li><a href="terms-of-service.html">Terms of Service</a></li>' +
           '<li><a href="cookie-policy.html">Cookie Policy</a></li>' +
