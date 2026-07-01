@@ -333,6 +333,9 @@ body.has-hero .section-head p,
 body.has-hero .section-head .lead{color:rgba(255,255,255,.8)}
 body.has-hero .feature h4{color:#fff}
 body.has-hero .feature p{color:rgba(255,255,255,.78)}
+/* About page: dim the bright Times Square background */
+body[data-fixed-bg^="assets/heroes/about"] .hero-fixed-bg{filter:saturate(.82) brightness(.72) contrast(1.02)}
+
 /* inner pages with a fixed bg: page header goes transparent — the fixed layer shows through */
 body.has-hero .page-head--photo{background-image:none !important;background-color:transparent;border-bottom:none;min-height:240px}
 body.has-hero .page-head--photo::before{background:none}
