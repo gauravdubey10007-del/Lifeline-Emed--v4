@@ -93,6 +93,18 @@
   progress.className = "scroll-progress";
   document.body.appendChild(progress);
 
+  /* fixed full-page hero background — content scrolls over it.
+     Home uses the default image; other pages declare theirs via
+     <body data-fixed-bg="assets/heroes/<page>.jpg">. */
+  var fixedSrc = document.body.getAttribute("data-fixed-bg");
+  if (document.body.classList.contains("has-hero") || fixedSrc) {
+    document.body.classList.add("has-hero");
+    var fixedBg = document.createElement("div");
+    fixedBg.className = "hero-fixed-bg";
+    if (fixedSrc) fixedBg.style.backgroundImage = "url('" + fixedSrc + "')";
+    document.body.insertBefore(fixedBg, document.body.firstChild);
+  }
+
   /* parallax target */
   var heroPhoto = document.querySelector(".hero--dark .hero__photo");
 
@@ -153,7 +165,7 @@
       container.setAttribute("data-scroll-container", "");
       [].slice.call(document.body.children).forEach(function (n) {
         if (n === nav) return;
-        if (n.classList && (n.classList.contains("nav__drawer") || n.classList.contains("scroll-progress"))) return;
+        if (n.classList && (n.classList.contains("nav__drawer") || n.classList.contains("scroll-progress") || n.classList.contains("hero-fixed-bg"))) return;
         if (n.tagName === "SCRIPT" || n.tagName === "LINK" || n.tagName === "STYLE") return;
         container.appendChild(n);
       });
