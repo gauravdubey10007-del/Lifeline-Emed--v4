@@ -27,7 +27,7 @@
   var navHtml =
     '<nav class="nav" id="siteNav"><div class="nav__inner">' +
       '<a class="brand" href="index.html"><span class="brand__mark">' + logoSvg + '</span>' +
-        '<span class="brand__name"><b>Lifeline Emed</b></span></a>' +
+        '<span class="brand__name"><b>Lifeline Emed</b><span>Companies</span></span></a>' +
       '<ul class="nav__links">' + NAV_LINKS.map(function (l) { return "<li>" + linkHtml(l) + "</li>"; }).join("") + "</ul>" +
       '<div class="nav__actions">' +
         '<a class="btn btn--gold" href="contact.html">Submit Manuscript</a>' +
@@ -45,7 +45,7 @@
       '<div class="footer__top">' +
         '<div class="footer__brand">' +
           '<a class="brand" href="index.html"><span class="brand__mark">' + logoSvg + '</span>' +
-            '<span class="brand__name"><b>Lifeline Emed</b></span></a>' +
+            '<span class="brand__name"><b>Lifeline Emed</b><span>Companies</span></span></a>' +
           "<p>A US-based organization advancing scholarly publishing, healthcare innovation, scientific research, education, and international collaboration.</p>" +
           '<div class="contacts">' +
             '<a href="mailto:info@lifelineemed.com">info@lifelineemed.com</a>' +
