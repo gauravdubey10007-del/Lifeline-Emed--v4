@@ -83,7 +83,7 @@ img{max-width:100%;display:block}
   background:radial-gradient(circle at 35% 30%,var(--navy-600),var(--navy));border:1px solid rgba(194,145,47,.45)}
 .brand__mark svg{width:21px;height:21px}
 .brand__name{line-height:1.05}
-.brand__name b{font-size:15.5px;color:var(--navy);letter-spacing:.2px}
+.brand__name b{font-size:15.5px;color:var(--navy);letter-spacing:.2px;white-space:nowrap}
 .brand__name span{display:block;font-size:9px;font-weight:600;letter-spacing:1.8px;margin-top:2px;
   background:linear-gradient(120deg,var(--gold-soft),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
 .nav__links{display:flex;align-items:center;gap:clamp(12px,1.8vw,22px);list-style:none;margin:0 auto}
@@ -359,8 +359,13 @@ body.has-hero .footer{position:relative;z-index:1}
   background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);font-size:13px;color:var(--gold-soft);
   backdrop-filter:blur(6px)}
 .hero--dark .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.hero--dark .hero__brandline{margin-top:26px;font-size:clamp(14px,1.8vw,19px);font-weight:700;
+  letter-spacing:4px;text-transform:uppercase;
+  background:linear-gradient(120deg,var(--gold-soft),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
 .hero--dark h1{color:#fff;font-size:clamp(40px,7vw,84px);line-height:1;letter-spacing:-1.4px;font-weight:800;
   max-width:16ch;margin:24px 0 22px}
+.hero--dark .hero__brandline+h1{margin-top:10px}
 .hero--dark h1 .accent{background:linear-gradient(120deg,var(--gold-soft),var(--gold));
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .hero--dark .hero__lead{color:rgba(255,255,255,.85);max-width:58ch;font-size:clamp(15px,1.6vw,18px);margin-bottom:32px}
@@ -418,6 +423,15 @@ body.has-hero .nav.scrolled{background:transparent;backdrop-filter:none;border-b
 @media(max-width:720px){
   .grid-3,.grid-2,.grid-4{grid-template-columns:1fr}
   .footer__top{grid-template-columns:1fr 1fr}
+  /* compact horizontal logo */
+  .brand{gap:8px}
+  .brand__mark{width:30px;height:30px;border-radius:8px}
+  .brand__mark svg{width:17px;height:17px}
+  .brand__name b{font-size:13.5px}
+  .brand__name span{font-size:7.5px;letter-spacing:1.4px;margin-top:1px}
+  /* small Submit Manuscript button */
+  .nav__actions{gap:8px}
+  .nav__actions .btn--gold{padding:8px 13px;font-size:12px;box-shadow:0 4px 12px rgba(194,145,47,.25)}
 }
 @media(max-width:480px){
   .stats{grid-template-columns:1fr 1fr}
