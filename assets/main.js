@@ -62,7 +62,7 @@
         '<div><h4>Publishing</h4><ul>' +
           '<li><a href="conferences.html">Conferences</a></li>' +
           '<li><a href="publications.html">Publications</a></li>' +
-          '<li><a href="journals.html#guidelines">Author Guidelines</a></li>' +
+          '<li><a href="https://ajri-journal.vercel.app/author-guidelines.html">Author Guidelines</a></li>' +
           '<li><a href="contact.html">Submit Manuscript</a></li>' +
         "</ul></div>" +
         '<div><h4>Legal</h4><ul>' +
