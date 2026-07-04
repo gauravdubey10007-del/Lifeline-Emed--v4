@@ -4,7 +4,7 @@
 (function () {
   var NAV_LINKS = [
     { label: "About", href: "about.html" },
-    { label: "Journals", href: "journals.html" },
+    { label: "Journals", href: "https://ajri-journal.vercel.app/" },
     { label: "Research Areas", href: "research-areas.html" },
     { label: "Editorial Board", href: "editorial-board.html" },
     { label: "Conferences", href: "conferences.html" },
@@ -55,7 +55,7 @@
         '<div><h4>Explore</h4><ul>' +
           '<li><a href="index.html">Home</a></li>' +
           '<li><a href="about.html">About Us</a></li>' +
-          '<li><a href="journals.html">Journals</a></li>' +
+          '<li><a href="https://ajri-journal.vercel.app/">Journals</a></li>' +
           '<li><a href="research-areas.html">Research Areas</a></li>' +
           '<li><a href="editorial-board.html">Editorial Board</a></li>' +
         "</ul></div>" +
