@@ -3,21 +3,38 @@
    ============================================================ */
 (function () {
   var NAV_LINKS = [
+    { label: "Home", href: "index.html" },
     { label: "About", href: "about.html" },
-    { label: "Journals", href: "https://ajri-journal.vercel.app/" },
-    { label: "Research Areas", href: "research-areas.html" },
-    { label: "Editorial Board", href: "editorial-board.html" },
-    { label: "Conferences", href: "conferences.html" },
+    { label: "Our Services", href: "services.html" },
+    { label: "Conferences & Events", href: "conferences.html" },
+    { label: "Training Programs", href: "training.html" },
     { label: "Publications", href: "publications.html" },
+    { label: "Journals", href: "https://ajri-journal.vercel.app/", external: true },
     { label: "Contact", href: "contact.html" }
   ];
 
   var page = (location.pathname.split("/").pop() || "index.html");
   if (page === "") page = "index.html";
 
+  function isActive(l) {
+    if (l.href.split("#")[0] === page) return true;
+    return !!(l.children && l.children.some(function (c) { return c.href.split("#")[0] === page; }));
+  }
+
   function linkHtml(l, cls) {
-    var active = l.href === page ? " active" : "";
-    return '<a class="' + (cls || "") + active + '" href="' + l.href + '">' + l.label + "</a>";
+    var active = isActive(l) ? " active" : "";
+    var ext = l.external ? ' target="_blank" rel="noopener"' : "";
+    return '<a class="' + (cls || "") + active + '" href="' + l.href + '"' + ext + ">" + l.label + "</a>";
+  }
+
+  function navItemHtml(l) {
+    if (!l.children) return "<li>" + linkHtml(l) + "</li>";
+    var caret = '<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m6 9 6 6 6-6"/></svg>';
+    var sub = '<ul class="nav__sub">' + l.children.map(function (c) {
+      return "<li>" + linkHtml(c) + "</li>";
+    }).join("") + "</ul>";
+    var active = isActive(l) ? " active" : "";
+    return '<li class="has-sub"><a class="' + active + '" href="' + l.href + '">' + l.label + caret + "</a>" + sub + "</li>";
   }
 
   var logoSvg =
@@ -28,14 +45,20 @@
     '<nav class="nav" id="siteNav"><div class="nav__inner">' +
       '<a class="brand" href="index.html"><span class="brand__mark">' + logoSvg + '</span>' +
         '<span class="brand__name"><b>Lifeline Emed</b><span>Companies</span></span></a>' +
-      '<ul class="nav__links">' + NAV_LINKS.map(function (l) { return "<li>" + linkHtml(l) + "</li>"; }).join("") + "</ul>" +
+      '<ul class="nav__links">' + NAV_LINKS.filter(function (l) { return l.href !== "index.html"; }).map(navItemHtml).join("") + "</ul>" +
       '<div class="nav__actions">' +
         '<a class="btn btn--gold" href="contact.html">Submit Manuscript</a>' +
         '<button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>' +
       "</div>" +
     "</div></nav>" +
     '<div class="nav__drawer" id="drawer"><ul>' +
-      NAV_LINKS.map(function (l) { return "<li>" + linkHtml(l) + "</li>"; }).join("") +
+      NAV_LINKS.map(function (l) {
+        var out = "<li>" + linkHtml(l) + "</li>";
+        if (l.children) {
+          out += l.children.map(function (c) { return '<li class="drawer-sub">' + linkHtml(c) + "</li>"; }).join("");
+        }
+        return out;
+      }).join("") +
       '<a class="btn btn--gold" href="contact.html">Submit Manuscript</a>' +
     "</ul></div>";
 
@@ -55,14 +78,16 @@
         '<div><h4>Explore</h4><ul>' +
           '<li><a href="index.html">Home</a></li>' +
           '<li><a href="about.html">About Us</a></li>' +
-          '<li><a href="https://ajri-journal.vercel.app/">Journals</a></li>' +
-          '<li><a href="research-areas.html">Research Areas</a></li>' +
-          '<li><a href="editorial-board.html">Editorial Board</a></li>' +
+          '<li><a href="services.html">Our Services</a></li>' +
+          '<li><a href="conferences.html">Conferences &amp; Events</a></li>' +
+          '<li><a href="training.html">Training Programs</a></li>' +
         "</ul></div>" +
         '<div><h4>Publishing</h4><ul>' +
-          '<li><a href="conferences.html">Conferences</a></li>' +
           '<li><a href="publications.html">Publications</a></li>' +
-          '<li><a href="https://ajri-journal.vercel.app/author-guidelines.html">Author Guidelines</a></li>' +
+          '<li><a href="https://ajri-journal.vercel.app/" target="_blank" rel="noopener">Journals (AJRI)</a></li>' +
+          '<li><a href="research-areas.html">Research Areas</a></li>' +
+          '<li><a href="editorial-board.html">Editorial Board</a></li>' +
+          '<li><a href="https://ajri-journal.vercel.app/" target="_blank" rel="noopener">Author Guidelines</a></li>' +
           '<li><a href="contact.html">Submit Manuscript</a></li>' +
         "</ul></div>" +
         '<div><h4>Legal</h4><ul>' +
