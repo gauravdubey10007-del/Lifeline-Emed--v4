@@ -375,6 +375,12 @@ body.has-hero .card h3,body.has-hero .step h3{color:#fff}
 body.has-hero .card p,body.has-hero .step p{color:rgba(255,255,255,.78)}
 body.has-hero .card:hover{border-color:rgba(227,184,90,.45);box-shadow:0 20px 50px rgba(0,0,0,.5)}
 body.has-hero .card__icon{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:var(--gold-soft)}
+/* white islands inside glass cards keep dark text */
+body.has-hero .info-card{--navy:#0f2c52;--text:#16233a;--muted:#5b6b82;--border:#e3eaf3;--surface-2:#eef3fa}
+body.has-hero .card .btn--ghost,
+body.has-hero .panel:not(.panel--navy) .btn--ghost{color:#0f2c52;border-color:#e3eaf3}
+body.has-hero .card .btn--ghost:hover,
+body.has-hero .panel:not(.panel--navy) .btn--ghost:hover{background:#f5f8fc;border-color:#1d4e8f}
 body.has-hero .footer{position:relative;z-index:1}
 .hero--dark .pill{display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:999px;
   background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);font-size:13px;color:var(--gold-soft);
