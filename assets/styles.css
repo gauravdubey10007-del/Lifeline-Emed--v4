@@ -66,8 +66,9 @@ img{max-width:100%;display:block}
   background:rgba(255,255,255,.86);
   backdrop-filter:saturate(180%) blur(12px);
   border-bottom:1px solid transparent;
-  transition:box-shadow .25s,border-color .25s,background .25s;
+  transition:box-shadow .25s,border-color .25s,background .25s,transform .35s ease;
 }
+.nav.nav--hidden{transform:translateY(-135%)}
 .nav__inner{width:100%;max-width:var(--maxw);margin:0 auto;height:100%;display:flex;align-items:center;gap:26px;padding:0 clamp(18px,4vw,40px);position:relative;
   border:1px solid transparent;border-radius:0;
   transition:margin .35s ease,max-width .35s ease,height .35s ease,background .35s ease,
@@ -98,8 +99,8 @@ img{max-width:100%;display:block}
 .brand__name b{font-size:18px;color:var(--navy);letter-spacing:.2px;white-space:nowrap}
 .brand__name span{display:block;font-size:10.5px;font-weight:600;letter-spacing:2px;margin-top:2px;
   background:linear-gradient(120deg,var(--gold-soft),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-.nav__links{display:flex;align-items:center;gap:clamp(10px,1.4vw,18px);list-style:none;margin:0 auto}
-.nav__links a{font-size:13.5px;font-weight:500;color:var(--muted);position:relative;padding:6px 0;transition:color .2s;white-space:nowrap}
+.nav__links{display:flex;align-items:center;gap:clamp(8px,0.9vw,15px);list-style:none;margin:0 auto}
+.nav__links a{font-size:13px;font-weight:500;color:var(--muted);position:relative;padding:6px 0;transition:color .2s;white-space:nowrap}
 .nav__links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gold);transition:width .25s}
 .nav__links a:hover,.nav__links a.active{color:var(--navy)}
 .nav__links a.active::after,.nav__links a:hover::after{width:100%}
@@ -118,7 +119,8 @@ body.has-hero .nav:not(.scrolled) .nav__links .nav__sub a{color:var(--text)}
 body.has-hero .nav:not(.scrolled) .nav__links .nav__sub a:hover{color:var(--navy)}
 .nav__drawer .drawer-sub a{padding-left:24px;font-size:14px;color:var(--muted)}
 
-.nav__actions{margin-left:auto;display:flex;align-items:center;gap:12px}
+.nav__actions{margin-left:auto;display:flex;align-items:center;gap:12px;flex:none}
+.nav__actions .btn--gold{flex:none;white-space:nowrap}
 .nav__burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
 .nav__burger span{display:block;width:24px;height:2px;background:var(--navy);margin:5px 0;border-radius:2px;transition:.25s}
 

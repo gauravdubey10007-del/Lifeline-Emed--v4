@@ -9,6 +9,7 @@
     { label: "Conferences & Events", href: "conferences.html" },
     { label: "Training Programs", href: "training.html" },
     { label: "Publications", href: "publications.html" },
+    { label: "Editorial Board", href: "editorial-board.html" },
     { label: "Journals", href: "https://ajri-journal.vercel.app/", external: true },
     { label: "Contact", href: "contact.html" }
   ];
@@ -134,9 +135,23 @@
   /* parallax target */
   var heroPhoto = document.querySelector(".hero--dark .hero__photo");
 
-  /* unified scroll handler — driven by native scroll OR Locomotive */
-  function applyScroll(y, limit) {
-    if (nav) nav.classList.toggle("scrolled", y > 20);
+  /* unified scroll handler — driven by native scroll OR Locomotive.
+     `dir` is Locomotive's authoritative "up"/"down"; falls back to delta. */
+  var lastY = 0;
+  function applyScroll(y, limit, dir) {
+    if (nav) {
+      nav.classList.toggle("scrolled", y > 20);
+      /* auto-hide on scroll down, always reveal on scroll up / near top —
+         keeps content from ever being cut by the fixed nav */
+      var goingUp = dir === "up" || y < lastY - 4;
+      var goingDown = y > lastY + 4; /* require real downward movement to hide */
+      if (y < 140 || (drawer && drawer.classList.contains("open")) || goingUp) {
+        nav.classList.remove("nav--hidden");
+      } else if (goingDown) {
+        nav.classList.add("nav--hidden");
+      }
+    }
+    lastY = y;
     var max = limit || (document.documentElement.scrollHeight - window.innerHeight);
     progress.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + "%";
     if (heroPhoto && !reduceMotion) {
@@ -209,7 +224,8 @@
         tablet: { smooth: false, breakpoint: 1024 },
         smartphone: { smooth: false, breakpoint: 768 }
       });
-      loco.on("scroll", function (a) { applyScroll(a.scroll.y, a.limit && a.limit.y); });
+      window.removeEventListener("scroll", nativeScroll); /* Locomotive is now the sole scroll source */
+      loco.on("scroll", function (a) { applyScroll(a.scroll.y, a.limit && a.limit.y, a.direction); });
 
       // smooth anchor links
       document.querySelectorAll('a[href^="#"]').forEach(function (a) {
