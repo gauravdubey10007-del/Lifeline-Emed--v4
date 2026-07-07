@@ -38,7 +38,7 @@
   }
 
   var logoSvg =
-    '<svg viewBox="0 0 24 24" fill="none"><path d="M2 13h4l2-7 3 14 3-9 2 2h6" stroke="#e3b85a" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    '<img src="assets/logo.png?v=1" alt="Lifeline Emed logo" width="46" height="46" />';
 
   /* ---------- NAV ---------- */
   var navHtml =
