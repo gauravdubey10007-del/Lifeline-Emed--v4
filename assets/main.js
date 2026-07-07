@@ -73,7 +73,6 @@
           "<p>A US-based organization advancing scholarly publishing, healthcare innovation, scientific research, education, and international collaboration.</p>" +
           '<div class="contacts">' +
             '<a href="mailto:info@lifelineemed.com">info@lifelineemed.com</a>' +
-            '<a href="mailto:submissions@ajri.org">submissions@ajri.org</a>' +
             "<span>910 Bergen Avenue, Suite 209,<br>Jersey City, NJ 07306</span>" +
           "</div>" +
         "</div>" +
@@ -135,23 +134,9 @@
   /* parallax target */
   var heroPhoto = document.querySelector(".hero--dark .hero__photo");
 
-  /* unified scroll handler — driven by native scroll OR Locomotive.
-     `dir` is Locomotive's authoritative "up"/"down"; falls back to delta. */
-  var lastY = 0;
-  function applyScroll(y, limit, dir) {
-    if (nav) {
-      nav.classList.toggle("scrolled", y > 20);
-      /* auto-hide on scroll down, always reveal on scroll up / near top —
-         keeps content from ever being cut by the fixed nav */
-      var goingUp = dir === "up" || y < lastY - 4;
-      var goingDown = y > lastY + 4; /* require real downward movement to hide */
-      if (y < 140 || (drawer && drawer.classList.contains("open")) || goingUp) {
-        nav.classList.remove("nav--hidden");
-      } else if (goingDown) {
-        nav.classList.add("nav--hidden");
-      }
-    }
-    lastY = y;
+  /* unified scroll handler — driven by native scroll OR Locomotive */
+  function applyScroll(y, limit) {
+    if (nav) nav.classList.toggle("scrolled", y > 20);
     var max = limit || (document.documentElement.scrollHeight - window.innerHeight);
     progress.style.width = (max > 0 ? Math.min(100, (y / max) * 100) : 0) + "%";
     if (heroPhoto && !reduceMotion) {
@@ -224,8 +209,7 @@
         tablet: { smooth: false, breakpoint: 1024 },
         smartphone: { smooth: false, breakpoint: 768 }
       });
-      window.removeEventListener("scroll", nativeScroll); /* Locomotive is now the sole scroll source */
-      loco.on("scroll", function (a) { applyScroll(a.scroll.y, a.limit && a.limit.y, a.direction); });
+      loco.on("scroll", function (a) { applyScroll(a.scroll.y, a.limit && a.limit.y); });
 
       // smooth anchor links
       document.querySelectorAll('a[href^="#"]').forEach(function (a) {

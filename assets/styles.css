@@ -66,9 +66,8 @@ img{max-width:100%;display:block}
   background:rgba(255,255,255,.86);
   backdrop-filter:saturate(180%) blur(12px);
   border-bottom:1px solid transparent;
-  transition:box-shadow .25s,border-color .25s,background .25s,transform .35s ease;
+  transition:box-shadow .25s,border-color .25s,background .25s;
 }
-.nav.nav--hidden{transform:translateY(-135%)}
 .nav__inner{width:100%;max-width:var(--maxw);margin:0 auto;height:100%;display:flex;align-items:center;gap:26px;padding:0 clamp(18px,4vw,40px);position:relative;
   border:1px solid transparent;border-radius:0;
   transition:margin .35s ease,max-width .35s ease,height .35s ease,background .35s ease,
