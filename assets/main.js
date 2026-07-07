@@ -73,6 +73,7 @@
           '<div class="contacts">' +
             '<a href="mailto:info@lifelineemed.com">info@lifelineemed.com</a>' +
             '<a href="mailto:submissions@ajri.org">submissions@ajri.org</a>' +
+            "<span>910 Bergen Avenue, Suite 209,<br>Jersey City, NJ 07306</span>" +
           "</div>" +
         "</div>" +
         '<div><h4>Explore</h4><ul>' +

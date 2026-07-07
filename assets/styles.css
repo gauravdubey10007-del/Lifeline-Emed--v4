@@ -320,6 +320,7 @@ h1,h2,h3{color:var(--navy);letter-spacing:-.4px;line-height:1.12}
 .footer__brand .contacts{margin-top:18px;display:grid;gap:8px}
 .footer__brand .contacts a{color:#cdd8e8;font-size:14px}
 .footer__brand .contacts a:hover{color:#fff}
+.footer__brand .contacts span{color:#9fb1c9;font-size:14px;line-height:1.5}
 .footer h4{color:#fff;font-size:13px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:16px}
 .footer ul{list-style:none;display:grid;gap:10px}
 .footer ul a{color:#9fb1c9;font-size:14px;transition:color .2s}
