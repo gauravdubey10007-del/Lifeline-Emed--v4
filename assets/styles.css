@@ -75,8 +75,8 @@ img{max-width:100%;display:block}
 /* island nav once scrolled */
 .nav.scrolled{background:transparent;backdrop-filter:none;border-bottom-color:transparent;box-shadow:none;pointer-events:none}
 .nav.scrolled .nav__inner{pointer-events:auto;margin:8px auto 0;
-  max-width:min(1250px,calc(100% - 16px));height:calc(var(--nav-h) - 8px);
-  padding:0 clamp(16px,2.5vw,28px);
+  max-width:var(--maxw);height:calc(var(--nav-h) - 8px);
+  padding:0 clamp(18px,4vw,40px);
   background:linear-gradient(135deg,rgba(12,20,36,.66),rgba(9,16,29,.5));
   -webkit-backdrop-filter:saturate(150%) blur(20px);
   backdrop-filter:saturate(150%) blur(20px);
