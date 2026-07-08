@@ -164,69 +164,26 @@
     var items = group.querySelectorAll(".reveal");
     items.forEach(function (it, i) { it.style.transitionDelay = (i % 6) * 80 + "ms"; });
   });
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-
-  /* ---------- Locomotive Scroll (smooth inertia) — progressive enhancement ---------- */
-  function loadLocomotive() {
-    if (reduceMotion) return;                                  // respect reduced-motion
-    if (window.innerWidth && window.innerWidth < 768) return;  // native scroll on mobile (0 = unknown → allow)
-    var css = document.createElement("link");
-    css.rel = "stylesheet";
-    css.href = "assets/vendor/locomotive-scroll.min.css";
-    document.head.appendChild(css);
-    var s = document.createElement("script");
-    s.src = "assets/vendor/locomotive-scroll.min.js";
-    s.onload = initLocomotive;
-    s.onerror = function () { /* keep native scroll */ };
-    document.head.appendChild(s);
-  }
-
-  function initLocomotive() {
-    if (typeof LocomotiveScroll === "undefined") return;
-    try {
-      var container = document.createElement("main");
-      container.setAttribute("data-scroll-container", "");
-      [].slice.call(document.body.children).forEach(function (n) {
-        if (n === nav) return;
-        if (n.classList && (n.classList.contains("nav__drawer") || n.classList.contains("scroll-progress") || n.classList.contains("hero-fixed-bg"))) return;
-        if (n.tagName === "SCRIPT" || n.tagName === "LINK" || n.tagName === "STYLE") return;
-        container.appendChild(n);
-      });
-      document.body.appendChild(container);
-      [].slice.call(container.children).forEach(function (c) {
-        if (["HEADER", "SECTION", "FOOTER"].indexOf(c.tagName) >= 0) c.setAttribute("data-scroll-section", "");
-      });
-      document.documentElement.classList.add("has-scroll-smooth");
-
-      var loco = new LocomotiveScroll({
-        el: container,
-        smooth: true,
-        lerp: 0.085,
-        multiplier: 1,
-        tablet: { smooth: false, breakpoint: 1024 },
-        smartphone: { smooth: false, breakpoint: 768 }
-      });
-      loco.on("scroll", function (a) { applyScroll(a.scroll.y, a.limit && a.limit.y); });
-
-      // smooth anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-        var href = a.getAttribute("href");
-        if (href && href.length > 1) {
-          a.addEventListener("click", function (e) { e.preventDefault(); loco.scrollTo(href); });
-        }
-      });
-
-      // refresh after fonts/images settle
-      window.addEventListener("load", function () { loco.update(); });
-      setTimeout(function () { loco.update(); }, 700);
-    } catch (err) {
-      document.documentElement.classList.remove("has-scroll-smooth");
+  /* Scroll-driven reveal — robust (no IntersectionObserver viewport dependency).
+     Reveals each element once its top enters the lower part of the viewport. */
+  var reveals = [].slice.call(document.querySelectorAll(".reveal"));
+  function revealCheck() {
+    var vh = window.innerHeight || document.documentElement.clientHeight || 800;
+    for (var i = reveals.length - 1; i >= 0; i--) {
+      if (reveals[i].getBoundingClientRect().top < vh * 0.92) {
+        reveals[i].classList.add("in");
+        reveals.splice(i, 1);
+      }
     }
   }
-  loadLocomotive();
+  window.addEventListener("scroll", revealCheck, { passive: true });
+  window.addEventListener("resize", revealCheck, { passive: true });
+  window.addEventListener("load", revealCheck);
+  revealCheck();
+
+  /* Native scroll only (like the AJRI journal site) — the sticky nav then
+     spans the content width, so the island never shifts against the scrollbar.
+     Fixed background, reveals, progress bar and parallax all run on native scroll. */
 
   /* contact / auth form demo handlers */
   document.querySelectorAll("form[data-demo]").forEach(function (f) {
